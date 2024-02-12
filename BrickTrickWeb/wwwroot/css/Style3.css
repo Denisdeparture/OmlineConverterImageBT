@@ -1,0 +1,40 @@
+﻿.list_causes ul {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.list_causes li {
+    font-size: 20px;
+    line-height: 2.4em;
+}
+
+body {
+    background-image: url("https://img.freepik.com/premium-photo/natural-anime-landscape-with-bright-sky-and-juicy-colors_739292-2782.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.one {
+    float: left;
+    margin-left: 120px;
+}
+
+.two {
+    float: right;
+    margin-right: 120px;
+}

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/Style1.css" type="text/css" />
+    <title>ConverterOnlineBT</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h1>Главная страница</h1>
+
+        </div>
+        <div class="header-navigation">
+            <ul>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="Man.html">Прошлая работа</a></li>
+            </ul>
+        </div>
+        <hr>
+    </header>
+    <main>
+        <div class="El">
+            <p> Загрузите ваш элемент </p>
+            <div class="interiorEL">
+                <div class="form1">
+                    <form action="/Main/Conver" method="post" enctype="multipart/form-data">
+                        <input type="file" name="UserPhoto" />
+                        <input type="submit" value="Загрузить" />
+                        <select name="format">
+                            <option value=".jpg">JPG</option>
+                            <option value=".webp">WEBP</option>
+                            <option value=".png">PNG</option>
+                        </select>
+                    </form>
+                    <form action="/Main/Conver">
+                        <button>Стереть</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="DownPage">
+            <hr></hr>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿p {
+    font-size: 18px;
+    font-family: Arial
+}
+
+
+.header{
+    text-align: center;
+}
+.line {
+    border-width: 10px;
+    border-color: red;
+}
+
+hr {
+    border-width: 4px;
+    border-color: #808080;
+}
+
+body {
+    background-image: url("../images/MainPageImg.jpg");
+    background-repeat: repeat-y;
+    background-position: center center;
+    background-size: cover;
+}
+
+a {
+    color: #DCDCDC;
+}
+
+main {
+    width: 50%;
+    margin: 0 auto;
+}
+
+li {
+    width: 100%;
+    border-style: solid;
+    border-color: #808080;
+    display: inline;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 10px;
+}
+ul{
+    text-align: center;
+}
+.El {
+    border: solid white;
+    height: 380px;
+    width: 100%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.interiorEL .form1 {
+    border: dashed grey;
+    border-radius: 20px;
+    height: 290px;
+    width: 95%;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.El p {
+    font-size: 16px;
+    font-family: Arial;
+    text-align: center;
+    font-weight: bold;
+}
+
+footer .DownPage {
+    padding-top: 200px;
+}
