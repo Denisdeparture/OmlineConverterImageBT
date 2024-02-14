@@ -2,9 +2,11 @@ using BrickTrickWeb;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Diagnostics;
+using System.Net;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<ServiceImage>();
+builder.Services.AddDbContext<DBapplicationClass>();
 var app = builder.Build();
 app.MapRazorPages();
 
@@ -33,13 +35,38 @@ app.UseStatusCodePages(async statusCodeContext =>
 app.Map("/Main",async context =>
 {
     context.Response.ContentType = "text/html; charset=utf-8";
-    string? id = null;
+    string? password = null;
     string? name = null;
+    string? emailAddres = null;
+
+    DBapplicationClass dBapplicationClass = new DBapplicationClass();
+    //  ServiceSendEmailUser Sender;
+
     if (context.Request.Method == "POST")
     {
-        name = context.Request.Form["name"];
-        id = context.Request.Form["pass"];
-        if (id != null & name != null) { context.Response.Redirect($"/Main/{id}/{name}"); }
+        name = WebUtility.UrlEncode(context.Request.Form["name"]);
+        password = WebUtility.UrlEncode(context.Request.Form["pass"]);
+        emailAddres = context.Request.Form["emailAddres"];
+
+        //    const string message = "Добро пожаловать к нам на сайт!!!!!!";
+
+        if ((password != null & name != null) & (emailAddres != null && emailAddres.Contains("@")))
+        {
+            /*
+            Sender = new ServiceSendEmailUser(emailAddres, message, name, "С успешной регистрацией");
+            Sender.SendLetter();
+            */
+            if (dBapplicationClass.CheckExistThisUser(password, emailAddres) == false)
+            {
+                dBapplicationClass.AddUser(new User() { Email = emailAddres, Name = name, Password = password });
+            }
+
+            context.Response.Redirect($"/Main/{password}/{name}");
+        }
+        foreach (var i in dBapplicationClass.TakeMeAllUsers())
+        {
+            Console.WriteLine($"{i.Name}/ {i.Password}/ {i.Email}");
+        }
     }
     else
     {
@@ -68,7 +95,7 @@ var Converter = app.Services.GetService<ServiceImage>();
             Converter.pathDirectory = $"wwwroot/ConvertionImg/";
             fileStream.Close();
             Converter.ChangeImage(fullPath, format, file.FileName);
-            response.Headers.ContentDisposition = $"attachment; filename= YourImg{format}";
+            response.Headers.ContentDisposition = $"attachment; filename= {WebUtility.UrlEncode(file.FileName).Substring(0, WebUtility.UrlEncode(file.FileName).IndexOf('.'))}{format}";
             
             await response.SendFileAsync(@$"wwwroot/ConvertionImg/{file.FileName}{format}");
         }

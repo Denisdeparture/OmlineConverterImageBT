@@ -18,8 +18,7 @@ hr {
 }
 
 body {
-    background-image: url("../images/MainPageImg.jpg");
-    background-repeat: repeat-y;
+    background-color: rgb(185, 182, 182);
     background-position: center center;
     background-size: cover;
 }
