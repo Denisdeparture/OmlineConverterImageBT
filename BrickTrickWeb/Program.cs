@@ -6,7 +6,6 @@ using System.Net;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<ServiceImage>();
-builder.Services.AddDbContext<DBapplicationClass>();
 var app = builder.Build();
 app.MapRazorPages();
 
@@ -39,7 +38,6 @@ app.Map("/Main",async context =>
     string? name = null;
     string? emailAddres = null;
 
-    DBapplicationClass dBapplicationClass = new DBapplicationClass();
     //  ServiceSendEmailUser Sender;
 
     if (context.Request.Method == "POST")
@@ -52,20 +50,7 @@ app.Map("/Main",async context =>
 
         if ((password != null & name != null) & (emailAddres != null && emailAddres.Contains("@")))
         {
-            /*
-            Sender = new ServiceSendEmailUser(emailAddres, message, name, "С успешной регистрацией");
-            Sender.SendLetter();
-            */
-            if (dBapplicationClass.CheckExistThisUser(password, emailAddres) == false)
-            {
-                dBapplicationClass.AddUser(new User() { Email = emailAddres, Name = name, Password = password });
-            }
-
             context.Response.Redirect($"/Main/{password}/{name}");
-        }
-        foreach (var i in dBapplicationClass.TakeMeAllUsers())
-        {
-            Console.WriteLine($"{i.Name}/ {i.Password}/ {i.Email}");
         }
     }
     else
